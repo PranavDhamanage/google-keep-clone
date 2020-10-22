@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Google Keep</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap"
+    />
+    <link rel="shortcut icon" type="icon" href="assets/google-keep-icon.png" />
+    <script
+      src="https://kit.fontawesome.com/3c732605e9.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="modal">
+      <div class="modal-content">
+        <div class="modal-title-container">
+          <input class="modal-title" placeholder="Title" type="text">
+        </div>
+        <div class="modal-text-container">
+          <input class="modal-text" placeholder="Take a note..." type="text">
+        </div>
+        <span class="modal-close-button">Close</span>
+      </div>
+    </div>
+    <main class="main-container">
+      <header class="header-container">
+        <img
+          class="header-logo"
+          src="./assets/google-keep.png"
+          alt="Google Keep Logo"
+        />
+        <h2 class="header-title">Keep</h2>
+      </header>
+
+      <div class="form-container">
+        <form class="note-container" autocomplete="off">
+          <div class="note-title-container">
+            <input
+              class="note-title"
+              placeholder="Title"
+              type="text"
+              required
+            />
+          </div>
+          <div class="note-text-container">
+            <input
+              class="note-text"
+              placeholder="Take a note..."
+              type="text"
+              required
+            />
+          </div>
+          <div class="form-buttons-container">
+            <button class="btn btn-submit" type="submit">Submit</button>
+            <button class="btn btn-close" type="button">Close</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- for displaying the notes -->
+      <div class="display-notes-container"></div>
+
+      <div class="placeholder-container">
+        <div class="placeholder-img">
+          <i class="far fa-lightbulb fa-10x"></i>
+        </div>
+        <p id="placeholder-text">Notes you add appear here</p>
+      </div>
+      <div class="color-tooltip">
+        <div class="color-option white" data-color="#fff" ></div>
+        <div class="color-option purple" data-color="#d7aefb"></div>
+        <div class="color-option orange" data-color="#fbbc04"></div>
+        <div class="color-option teal" data-color="#a7ffeb"></div>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
+<!-- Todo -->
+<!-- 1. flowing underline in modal -->

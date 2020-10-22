@@ -1,0 +1,403 @@
+@use "sass:map";
+@use "./general.scss";
+@use "./header.scss";
+
+@mixin colorPalette {
+  position: absolute;
+  display: none;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid #dedede;
+  margin: 0em 1em;
+  width: 150px;
+  height: 45px;
+  z-index: 5;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 7px;
+}
+
+$placeholder-font-color: #bfbfbf;
+$modal-transition: visibility 100ms, ease-in-out 250ms, opacity 100ms,
+  transform 200ms;
+$font-sizes: (
+  "placeholder-text": 1.37rem,
+  "note": 1.25rem,
+  "note-title": 1.4rem,
+  "button-text": 0.918rem,
+);
+$borders: (
+  "main-border": 1px solid red,
+  "form-border": 1px solid blue,
+);
+
+/*
+===================
+containers
+===================
+*/
+body,
+.form-container {
+  font-family: general.$font-stack;
+}
+
+.main-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: map-get($borders, main-border);
+}
+
+/*
+===========
+form
+===========
+*/
+
+.form-container {
+  border: map-get($borders, form-border);
+  @include general.flex-prop;
+}
+
+.note-container {
+  @include general.flex-prop;
+  flex-direction: column;
+  width: 98%;
+  margin: 0.5em auto;
+  border-radius: 7px;
+  &:last-child {
+    align-items: flex-end;
+  }
+}
+
+.note-title-container,
+.note-text-container {
+  width: 99%;
+  position: relative;
+  transition: {
+    property: all;
+    duration: 350ms;
+    timing-function: ease-in-out;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0px;
+    height: 2px;
+    margin: -0.5em 0em 0em;
+    opacity: 0;
+    z-index: 2;
+    background-color: darken(orange, 5%);
+    transition: {
+      property: all;
+      duration: 350ms;
+      timing-function: ease-in-out;
+    }
+    left: 0;
+  }
+  &:focus-within {
+    &::after {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+}
+
+.note-title-container {
+  display: none;
+}
+
+.form-buttons-container {
+  margin-top: 1em;
+  display: none;
+}
+
+.btn {
+  padding: 8px 24px;
+  margin: 0.35em 0.1em;
+  border-radius: 6px;
+  transition: {
+    duration: 250ms;
+    property: background-color;
+  }
+  font-size: map-get($font-sizes, button-text);
+}
+
+.btn-submit {
+  background-color: #007bff;
+}
+
+.btn-close {
+  &:focus,
+  &:hover {
+    background-color: rgb(216, 216, 216);
+  }
+  margin-right: 0.35em;
+}
+
+.placeholder-container {
+  @include general.flex-prop;
+  font-size: map-get($font-sizes, placeholder-text);
+  flex-direction: column;
+  color: $placeholder-font-color;
+  & .placeholder-img {
+    margin: {
+      top: 4em;
+    }
+    color: #dddddd;
+  }
+}
+/*
+=================
+typography
+=================
+*/
+
+.note-title,
+.note-text {
+  margin : {
+    top: 0.1em;
+    bottom: 0em;
+  }
+  width: 99%;
+  padding: 0.45em 0.8em;
+  border-radius: 5px;
+}
+
+.note-text {
+  font-size: map-get($font-sizes, note);
+}
+
+.note-title {
+  font-size: map-get($font-sizes, note-title);
+  font-weight: 500;
+}
+
+.note-open {
+  box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+// box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+
+/*
+=================
+displaying notes
+=================
+*/
+
+.display-notes-container {
+  @include general.flex-prop;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border: 2px solid firebrick;
+}
+
+.display-notes-structure {
+  @include general.flex-prop;
+  flex-direction: column;
+  width: 200px;
+  margin: 0.5em auto;
+  word-break: break-all;
+  border: 1px solid #dedede;
+  border-radius: 7px;
+  transition: all 200ms ease-in-out;
+  &:hover {
+    box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.display-note-text,
+.display-note-title {
+  font-size: map-get($font-sizes, note);
+  padding: 0.5em 0.8em;
+  outline: none;
+}
+
+.display-note-title {
+  font-weight: 500;
+}
+/*
+--------------------
+toolbar
+--------------------
+*/
+.toolbar-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  opacity: 0;
+  transition: all 150ms ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0.1em;
+}
+
+.color-tooltip {
+  position: absolute;
+  left: -130px;
+  top: 25px;
+  display: none;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid #dedede;
+  padding: 0.2em 0.2em;
+  width: 150px;
+  height: 45px;
+  z-index: 5;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 7px;
+}
+
+.color-option {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #dedede;
+  transform: scale(0.8);
+  transition: transform 150ms, border 150ms, border ease-in-out 150ms;
+  &:hover {
+    border: 1px solid rgb(65, 64, 64);
+    cursor: pointer;
+    transform: scale(1);
+  }
+}
+
+.white {
+  background-color: white;
+}
+
+.orange {
+  background-color: #fbbc04;
+}
+
+.purple {
+  background-color: #d7aefb;
+}
+
+.teal {
+  background-color: #a7ffeb;
+}
+/*
+=================
+editing notes
+=================
+*/
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(229, 229, 229, 0.5);
+  z-index: 3;
+  transform: scale(1.1);
+  transition: $modal-transition;
+}
+
+.modal-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 1px 3px 0px rgba(60, 64, 67, 0.302),
+    0 4px 8px 3px rgba(60, 64, 67, 0.149);
+  transform: scale(1.1);
+  top: 45%;
+  left: 10%;
+  width: 80vw;
+  background-color: white;
+  padding: 0.3em 1em;
+  border-radius: 7px;
+}
+
+.modal-content:last-child {
+  align-items: flex-end;
+}
+
+.modal-close-button {
+  padding: 5px 15px;
+  margin-right: -8px;
+  cursor: pointer;
+  border-radius: 5px;
+  transform: scale(1.1);
+  transition: background-color 200ms, transform 100ms, ease-in-out 100ms;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+  background-color: #eeebeb;
+}
+
+.modal-close-button:active {
+  transform: scale(1);
+}
+
+.modal-title-container,
+.modal-text-container {
+  width: 99%;
+  position: relative;
+  transition: {
+    property: all;
+    duration: 350ms;
+    timing-function: ease-in-out;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0px;
+    height: 2px;
+    margin: -0.5em 0em 0em;
+    opacity: 0;
+    z-index: 4;
+    background-color: darken(rgb(182, 113, 182), 5%);
+    transition: {
+      property: all;
+      duration: 350ms;
+      timing-function: ease-in-out;
+    }
+    left: 0;
+  }
+  &:focus-within {
+    &::after {
+      width: 100%;
+      opacity: 1;
+      border-radius: 20px;
+    }
+  }
+}
+
+.modal-title,
+.modal-text {
+  padding: 0.4em 0.2em;
+}
+
+.modal-title {
+  width: 100%;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.modal-text {
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.open-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: $modal-transition;
+}

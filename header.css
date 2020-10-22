@@ -1,0 +1,28 @@
+.header-container {
+  border: yellow;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header-logo {
+  width: 55px;
+  height: 50px;
+  margin: 0em 0.3em;
+}
+
+.header-title {
+  color: #5f6368;
+  font-size: 2rem;
+}
+/*# sourceMappingURL=header.css.map */

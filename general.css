@@ -1,0 +1,51 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0em;
+  padding: 0em;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+input,
+.btn {
+  font-family: "Google Sans", sans-serif;
+  outline: none;
+  border: none;
+}
+
+input:required {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.transition-note-title {
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  height: auto;
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+
+.transition-note-title .transition-note-title-close {
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+}
+
+img {
+  width: 25px;
+  margin: 0em 0.1em 0.1em;
+  cursor: pointer;
+}
+/*# sourceMappingURL=general.css.map */

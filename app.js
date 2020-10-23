@@ -10,6 +10,7 @@ class App {
     );
     this.$form = document.querySelector(".note-container");
     this.$noteTitleContainer = document.querySelector(".note-title-container");
+    this.$noteTextContainer = document.querySelector(".note-text-container");
     this.$noteTitle = document.querySelector(".note-title");
     this.$noteText = document.querySelector(".note-text");
     this.$displayNotesContainer = document.querySelector(
@@ -105,12 +106,14 @@ class App {
 
   openForm() {
     this.$form.classList.add("note-open");
+    this.$noteTextContainer.classList.remove("note-text-container-shadow");
     this.$noteTitleContainer.style.display = "block";
     this.$formButtonsContainer.style.display = "block";
   }
 
   closeForm() {
     this.$form.classList.remove("note-open");
+    this.$noteTextContainer.classList.add("note-text-container-shadow");
     this.$noteTitleContainer.style.display = "none";
     this.$formButtonsContainer.style.display = "none";
     this.$noteTitle.value = "";

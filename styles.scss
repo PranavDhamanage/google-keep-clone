@@ -2,21 +2,6 @@
 @use "./general.scss";
 @use "./header.scss";
 
-@mixin colorPalette {
-  position: absolute;
-  display: none;
-  background-color: #ffffff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  border: 1px solid #dedede;
-  margin: 0em 1em;
-  width: 150px;
-  height: 45px;
-  z-index: 5;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 7px;
-}
-
 $placeholder-font-color: #bfbfbf;
 $modal-transition: visibility 100ms, ease-in-out 250ms, opacity 100ms,
   transform 200ms;
@@ -45,7 +30,7 @@ body,
   position: relative;
   display: flex;
   flex-direction: column;
-  border: map-get($borders, main-border);
+  // border: map-get($borders, main-border);
 }
 
 /*
@@ -55,7 +40,7 @@ form
 */
 
 .form-container {
-  border: map-get($borders, form-border);
+  // border: map-get($borders, form-border);
   @include general.flex-prop;
 }
 
@@ -74,11 +59,6 @@ form
 .note-text-container {
   width: 99%;
   position: relative;
-  transition: {
-    property: all;
-    duration: 350ms;
-    timing-function: ease-in-out;
-  }
   &::after {
     content: "";
     position: absolute;
@@ -106,6 +86,12 @@ form
 
 .note-title-container {
   display: none;
+}
+
+.note-text-container-shadow {
+  border-radius: 7px;
+  transition: all ease-in-out 150ms;
+  box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
 .form-buttons-container {
@@ -191,7 +177,7 @@ displaying notes
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  border: 2px solid firebrick;
+  // border: 2px solid firebrick;
 }
 
 .display-notes-structure {
